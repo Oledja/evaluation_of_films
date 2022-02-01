@@ -1,10 +1,10 @@
 package com.prylipko.oleg.service.crew;
 
 import com.prylipko.oleg.domain.Crew;
-import com.prylipko.oleg.dto.credit.CreateCreditRequest;
-import com.prylipko.oleg.dto.credit.PatchCreditRequest;
-import com.prylipko.oleg.dto.credit.UpdateCreditRequest;
+import com.prylipko.oleg.dto.crew.CreateCrewRequest;
+import com.prylipko.oleg.dto.crew.PatchCrewRequest;
 import com.prylipko.oleg.dto.crew.ReadCrewResponse;
+import com.prylipko.oleg.dto.crew.UpdateCrewRequest;
 import com.prylipko.oleg.repository.CrewRepository;
 import com.prylipko.oleg.repository.RepositoryHelper;
 import com.prylipko.oleg.service.TranslationService;
@@ -31,14 +31,14 @@ public class CrewService {
         return translationService.translate(crew, ReadCrewResponse.class);
     }
 
-    public ReadCrewResponse createCrew(CreateCreditRequest create) {
+    public ReadCrewResponse createCrew(CreateCrewRequest create) {
         Crew crew = translationService.translate(create, Crew.class);
         crew = crewRepository.save(crew);
 
         return translationService.translate(crew, ReadCrewResponse.class);
     }
 
-    public ReadCrewResponse patchCrew(UUID id, PatchCreditRequest patch) {
+    public ReadCrewResponse patchCrew(UUID id, PatchCrewRequest patch) {
         Crew crew = repositoryHelper.getEntityRequired(Crew.class, id);
         translationService.map(patch, crew);
         crew = crewRepository.save(crew);
@@ -46,7 +46,7 @@ public class CrewService {
         return translationService.translate(crew, ReadCrewResponse.class);
     }
 
-    public ReadCrewResponse updateCrew(UUID id, UpdateCreditRequest update) {
+    public ReadCrewResponse updateCrew(UUID id, UpdateCrewRequest update) {
         Crew crew = repositoryHelper.getEntityRequired(Crew.class, id);
         translationService.map(update, crew);
         crew = crewRepository.save(crew);

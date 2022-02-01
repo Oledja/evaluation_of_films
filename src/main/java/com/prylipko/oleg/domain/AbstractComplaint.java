@@ -18,4 +18,14 @@ public abstract class AbstractComplaint extends AbstractEntity {
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private Status status;
+
+    @Override
+    public String toString() {
+        return "AbstractComplaint{" +
+                "author=" + author +
+                ", complaintType=" + complaintType +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }

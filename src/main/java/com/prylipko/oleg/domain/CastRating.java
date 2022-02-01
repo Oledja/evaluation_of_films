@@ -3,7 +3,6 @@ package com.prylipko.oleg.domain;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,5 +13,6 @@ import javax.persistence.*;
 public class CastRating extends AbstractRating {
 
     @ManyToOne
+    @JoinColumn(name = "castId")
     private Cast cast;
 }

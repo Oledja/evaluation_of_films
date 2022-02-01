@@ -11,7 +11,7 @@ public class ReadCrewResponse {
 
     private UUID id;
     private String job;
-    private ReadPersonResponse readPersonResponse;
+    private ReadPersonResponse person;
     private Instant createdAt;
     private Instant updatedAt;
 }

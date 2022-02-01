@@ -3,9 +3,7 @@ package com.prylipko.oleg.domain;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -14,7 +12,7 @@ import java.util.UUID;
 @Table(name = "casts")
 public class Cast extends AbstractEntity {
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "person_id")
     private Person person;
 

@@ -11,7 +11,7 @@ import java.util.UUID;
 public class ReadCastResponse {
 
     private UUID id;
-    private ReadPersonResponse readPersonResponse;
+    private ReadPersonResponse person;
     private String name;
     private Gender gender;
     private Instant createdAt;

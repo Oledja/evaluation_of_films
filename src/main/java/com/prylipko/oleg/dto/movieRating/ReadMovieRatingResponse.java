@@ -1,9 +1,7 @@
 package com.prylipko.oleg.dto.movieRating;
 
-import com.prylipko.oleg.dto.cast.ReadCastResponse;
 import com.prylipko.oleg.dto.user.ReadUserResponse;
 import lombok.Data;
-
 import java.time.Instant;
 import java.util.UUID;
 

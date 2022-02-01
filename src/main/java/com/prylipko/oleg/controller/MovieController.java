@@ -7,7 +7,6 @@ import com.prylipko.oleg.dto.movie.UpdateMovieRequest;
 import com.prylipko.oleg.service.movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.UUID;
 
 @RestController

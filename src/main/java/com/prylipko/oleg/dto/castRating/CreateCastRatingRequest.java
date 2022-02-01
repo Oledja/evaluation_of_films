@@ -1,7 +1,6 @@
 package com.prylipko.oleg.dto.castRating;
 
 import lombok.Data;
-
 import java.util.UUID;
 
 @Data

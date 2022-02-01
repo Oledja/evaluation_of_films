@@ -13,7 +13,6 @@ import com.prylipko.oleg.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -44,6 +43,7 @@ public class UserService {
     }
 
     public ReadUserResponse createUser(CreateUserRequest create) {
+
         create.setPassword(bCryptPasswordEncoder.encode(create.getPassword()));
 
         User user = translationService.translate(create, User.class);
@@ -57,7 +57,10 @@ public class UserService {
 
     public ReadUserResponse findUserByUsername(String username) {
         User user = userRepository.findUserByUserName(username);
-        return translationService.translate(user, ReadUserResponse.class);
+        if (user != null) {
+            return translationService.translate(user, ReadUserResponse.class);
+        }
+        return null;
     }
 
     public ReadUserResponse patchUser(UUID id, PatchUserRequest patch) {

@@ -1,6 +1,7 @@
 package com.prylipko.oleg.test;
 
 import com.prylipko.oleg.domain.*;
+import com.prylipko.oleg.dto.user.CreateUserRequest;
 import com.prylipko.oleg.repository.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,12 +46,7 @@ public class ttest {
     @Test
     @Transactional
     public void test() {
-        Genre genre = new Genre();
-        genre.setName("Genre");
-        genre = genreRepository.save(genre);
-
-        genre = genreRepository.findById(genre.getId()).get();
-        System.out.println(genre.getCreatedAt());
+        CreateUserRequest create = new CreateUserRequest();
     }
 
 }

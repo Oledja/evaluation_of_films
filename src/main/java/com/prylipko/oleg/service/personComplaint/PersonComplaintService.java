@@ -1,7 +1,6 @@
 package com.prylipko.oleg.service.personComplaint;
 
 import com.prylipko.oleg.domain.PersonComplaint;
-import com.prylipko.oleg.dto.person.UpdatePersonRequest;
 import com.prylipko.oleg.dto.personComplaint.CreatePersonComplaintRequest;
 import com.prylipko.oleg.dto.personComplaint.PatchPersonComplaintRequest;
 import com.prylipko.oleg.dto.personComplaint.ReadPersonComplaintResponse;
@@ -11,7 +10,6 @@ import com.prylipko.oleg.repository.RepositoryHelper;
 import com.prylipko.oleg.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 @Service

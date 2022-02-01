@@ -1,6 +1,7 @@
 package com.prylipko.oleg.validator;
 
 import com.prylipko.oleg.domain.User;
+import com.prylipko.oleg.dto.user.CreateUserRequest;
 import com.prylipko.oleg.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,23 +23,23 @@ public class UserValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        User user = (User) target;
+        CreateUserRequest createUser = (CreateUserRequest) target;
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "Required");
-        if (user.getUserName().length() < 2 || user.getUserName().length() > 32) {
+        if (createUser.getUserName() == null || createUser.getUserName().length() < 5 || createUser.getUserName().length() > 32) {
             errors.rejectValue("userName", "Size.userForm.username");
         }
 
-        if (userService.findUserByUsername(user.getUserName()) != null) {
+        if (userService.findUserByUsername(createUser.getUserName()) != null) {
             errors.rejectValue("userName", "Duplicate.userForm.username");
         }
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Required");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 32) {
+        if (createUser.getPassword().length() < 8 || createUser.getPassword().length() > 32) {
             errors.rejectValue("password", "Size.userForm.password");
         }
 
-        if(!user.getPasswordConfirm().equals(user.getPassword())) {
+        if(!createUser.getPasswordConfirm().equals(createUser.getPassword())) {
             errors.rejectValue("passwordConfirm", "Different.userForm.password");
         }
     }

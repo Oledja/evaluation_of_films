@@ -4,6 +4,7 @@ import com.prylipko.oleg.domain.AbstractEntity;
 import com.prylipko.oleg.repository.BaseTestRepository;
 import org.bitbucket.brunneng.br.Configuration;
 import org.bitbucket.brunneng.br.RandomObjectGenerator;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,15 +12,16 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles("test")
 @Sql(statements = {
+        "delete from t_user_roles",
         "delete from cast_rating",
         "delete from casts",
         "delete from credit",
         "delete from credit_crews",
+        "delete from credit_casts",
         "delete from crew",
         "delete from genre",
         "delete from movie",
@@ -33,8 +35,7 @@ import org.springframework.test.context.junit4.SpringRunner;
         "delete from review",
         "delete from review_complaint",
         "delete from role",
-        "delete from t_user",
-        "delete from t_user_roles"
+        "delete from t_user"
 }, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class BaseTest {
 
@@ -76,4 +77,8 @@ public class BaseTest {
         entity.setId(null);
         return entity;
     }
+
+    @Test
+    public void test(){}
 }
+

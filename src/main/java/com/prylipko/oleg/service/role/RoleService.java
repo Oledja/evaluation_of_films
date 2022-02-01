@@ -53,6 +53,12 @@ public class RoleService {
         return translationService.translate(role, ReadRoleResponse.class);
     }
 
+    public ReadRoleResponse getRoleByName(String name) {
+        Role role = roleRepository.findRoleByName(name);
+        return translationService.translate(role, ReadRoleResponse.class);
+
+    }
+
     public void deleteRole(UUID id) {
         roleRepository.delete(repositoryHelper.getEntityRequired(Role.class, id));
     }

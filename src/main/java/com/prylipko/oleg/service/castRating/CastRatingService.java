@@ -1,6 +1,8 @@
 package com.prylipko.oleg.service.castRating;
 
+import com.prylipko.oleg.domain.Cast;
 import com.prylipko.oleg.domain.CastRating;
+import com.prylipko.oleg.domain.User;
 import com.prylipko.oleg.dto.castRating.CreateCastRatingRequest;
 import com.prylipko.oleg.dto.castRating.PatchCastRatingRequest;
 import com.prylipko.oleg.dto.castRating.ReadCastRatingResponse;
@@ -10,6 +12,7 @@ import com.prylipko.oleg.repository.RepositoryHelper;
 import com.prylipko.oleg.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -31,8 +34,11 @@ public class CastRatingService {
         return translationService.translate(castRating, ReadCastRatingResponse.class);
     }
 
+    @Transactional
     public ReadCastRatingResponse createCastRating(CreateCastRatingRequest create) {
         CastRating castRating = translationService.translate(create, CastRating.class);
+        castRating.setCast(repositoryHelper.getReferenceExist(Cast.class, create.getCastId()));
+        castRating.setUser(repositoryHelper.getReferenceExist(User.class, create.getUserId()));
         castRating = castRatingRepository.save(castRating);
 
         return translationService.translate(castRating, ReadCastRatingResponse.class);

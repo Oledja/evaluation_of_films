@@ -9,19 +9,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
+
 @RestController
 @RequestMapping("/api/v1/genres")
+//@PreAuthorize("isAuthenticated()")
 public class GenreController {
 
     @Autowired
     private GenreService genreService;
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
+ //   @PreAuthorize(("hasRole('USER')"))
+ //   @PreAuthorize("permitAll()")
     public ReadGenreResponse getGenre(@PathVariable UUID id) {
+
         return genreService.getGenre(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ReadGenreResponse createGenre(@RequestBody CreateGenreRequest create) {
         return genreService.createGenre(create);
     }

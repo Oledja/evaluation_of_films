@@ -5,15 +5,11 @@ import com.prylipko.oleg.dto.genre.CreateGenreRequest;
 import com.prylipko.oleg.dto.genre.PatchGenreRequest;
 import com.prylipko.oleg.dto.genre.ReadGenreResponse;
 import com.prylipko.oleg.dto.genre.UpdateGenreRequest;
-import com.prylipko.oleg.exception.EntityNotFoundException;
 import com.prylipko.oleg.repository.GenreRepository;
 import com.prylipko.oleg.repository.RepositoryHelper;
 import com.prylipko.oleg.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -30,6 +26,7 @@ public class GenreService {
 
     public ReadGenreResponse getGenre(UUID id) {
         Genre genre = repositoryHelper.getEntityRequired(Genre.class, id);
+
 
         return translationService.translate(genre, ReadGenreResponse.class);
     }

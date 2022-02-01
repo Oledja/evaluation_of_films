@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class CreateCastRequest {
 
-    private ReadPersonResponse readPersonResponse;
+    private ReadPersonResponse person;
     private String name;
     private Gender gender;
 }

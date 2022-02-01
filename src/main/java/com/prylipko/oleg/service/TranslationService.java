@@ -61,14 +61,11 @@ import com.prylipko.oleg.dto.user.CreateUserRequest;
 import com.prylipko.oleg.dto.user.PatchUserRequest;
 import com.prylipko.oleg.dto.user.ReadUserResponse;
 import com.prylipko.oleg.dto.user.UpdateUserRequest;
-import com.prylipko.oleg.repository.GenreRepository;
-import com.prylipko.oleg.repository.MovieRepository;
-import com.prylipko.oleg.repository.ProductionCompanyRepository;
 import com.prylipko.oleg.repository.RepositoryHelper;
 import lombok.extern.slf4j.Slf4j;
+import org.bitbucket.brunneng.ot.Configuration;
 import org.bitbucket.brunneng.ot.ObjectTranslator;
 import org.bitbucket.brunneng.ot.exceptions.TranslationException;
-import org.bitbucket.brunneng.ot.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.UUID;
@@ -76,15 +73,6 @@ import java.util.UUID;
 @Slf4j
 @Service
 public class TranslationService {
-
-    @Autowired
-    private MovieRepository movieRepository;
-
-    @Autowired
-    private GenreRepository genreRepository;
-
-    @Autowired
-    private ProductionCompanyRepository productionCompanyRepository;
 
     @Autowired
     private RepositoryHelper repositoryHelper;
@@ -122,6 +110,10 @@ public class TranslationService {
         c.beanOfClass(UpdateCastRequest.class).translationTo(Cast.class);
         c.beanOfClass(PatchCastRequest.class).translationTo(Cast.class);
         c.beanOfClass(Cast.class).translationTo(ReadCastResponse.class);
+        c.beanOfClass(ReadCastResponse.class).translationTo(Cast.class);
+        c.beanOfClass(Cast.class).translationTo(CreateCastRequest.class);
+
+
     }
 
     private void configureForCastRating(Configuration c) {
@@ -178,6 +170,7 @@ public class TranslationService {
         c.beanOfClass(UpdatePersonRequest.class).translationTo(Person.class);
         c.beanOfClass(PatchPersonRequest.class).translationTo(Person.class);
         c.beanOfClass(Person.class).translationTo(ReadPersonResponse.class);
+        c.beanOfClass(ReadPersonResponse.class).translationTo(Person.class);
     }
 
     private void configureForPersonComplaint(Configuration c) {

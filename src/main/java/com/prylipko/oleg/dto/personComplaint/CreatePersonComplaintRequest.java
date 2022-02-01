@@ -1,7 +1,6 @@
 package com.prylipko.oleg.dto.personComplaint;
 
 import com.prylipko.oleg.domain.Status;
-import com.prylipko.oleg.dto.movie.ReadMovieResponse;
 import com.prylipko.oleg.dto.person.ReadPersonResponse;
 import com.prylipko.oleg.dto.user.ReadUserResponse;
 import lombok.Data;

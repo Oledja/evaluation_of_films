@@ -18,7 +18,9 @@ public class Credit extends AbstractEntity {
     private UUID movieId;
 
     @OneToMany
-    @JoinColumn(name = "credit_id")
+    @JoinTable(name = "credit_casts",
+            joinColumns = {@JoinColumn(name = "credit_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "cast_id", referencedColumnName = "id")})
     private List<Cast> casts;
 
     @ManyToMany

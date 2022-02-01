@@ -1,14 +1,15 @@
 package com.prylipko.oleg.controller;
 
-import com.prylipko.oleg.domain.User;
-import com.prylipko.oleg.service.security.SecurityService;
+import com.prylipko.oleg.dto.user.CreateUserRequest;
+import com.prylipko.oleg.dto.user.ReadUserResponse;
 import com.prylipko.oleg.service.user.UserService;
 import com.prylipko.oleg.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
+import javax.validation.ValidationException;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/api/v1/users")
@@ -17,23 +18,29 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private SecurityService service;
 
     @Autowired
     private UserValidator userValidator;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+    public String registration() {
 
         return "registration";
     }
 
-//    @PostMapping("/registration")
-//    public String registration(Model model) {
-//        model.addAttribute("userForm", new User());
-//
-//        return "registration";
-//    }
+
+    @ResponseBody
+    @GetMapping("/{id}")
+    public ReadUserResponse getUser(@PathVariable UUID id) {
+        return userService.getUser(id);
+    }
+    @ResponseBody
+    @PostMapping("/create")
+    public ReadUserResponse createUser (@RequestBody CreateUserRequest createUser, Errors errors) {
+        userValidator.validate(createUser, errors);
+        if (errors.hasErrors())
+            throw new ValidationException(errors.getAllErrors().toString());
+        return userService.createUser(createUser);
+    }
+
 }

@@ -7,5 +7,5 @@ import lombok.Data;
 public class PatchCrewRequest {
 
     private String job;
-    private ReadPersonResponse readPersonResponse;
+    private ReadPersonResponse person;
 }

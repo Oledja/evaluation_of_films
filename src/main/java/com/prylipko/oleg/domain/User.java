@@ -20,9 +20,6 @@ public class User extends AbstractEntity {
     @Column(name = "password")
     private String password;
 
-    @Transient
-    private String passwordConfirm;
-
     @Column(name = "birthday")
     private LocalDate birthday;
 

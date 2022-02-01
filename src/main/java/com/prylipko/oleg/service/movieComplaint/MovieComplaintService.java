@@ -9,9 +9,7 @@ import com.prylipko.oleg.repository.MovieComplaintRepository;
 import com.prylipko.oleg.repository.RepositoryHelper;
 import com.prylipko.oleg.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 @Service

@@ -1,17 +1,15 @@
 package com.prylipko.oleg.service.reviewComplaint;
 
 import com.prylipko.oleg.domain.ReviewComplaint;
-import com.prylipko.oleg.dto.review.ReadReviewResponse;
-import com.prylipko.oleg.dto.review.UpdateReviewRequest;
 import com.prylipko.oleg.dto.reviewComplaint.CreateReviewComplaintRequest;
 import com.prylipko.oleg.dto.reviewComplaint.PatchReviewComplaintRequest;
 import com.prylipko.oleg.dto.reviewComplaint.ReadReviewComplaintResponse;
+import com.prylipko.oleg.dto.reviewComplaint.UpdateReviewComplaintRequest;
 import com.prylipko.oleg.repository.RepositoryHelper;
 import com.prylipko.oleg.repository.ReviewComplaintRepository;
 import com.prylipko.oleg.service.TranslationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.UUID;
 
 @Service
@@ -47,7 +45,7 @@ public class ReviewComplaintService {
         return translationService.translate(reviewComplaint, ReadReviewComplaintResponse.class);
     }
 
-    public ReadReviewComplaintResponse updateReviewComplaint(UUID id, UpdateReviewRequest update) {
+    public ReadReviewComplaintResponse updateReviewComplaint(UUID id, UpdateReviewComplaintRequest update) {
         ReviewComplaint reviewComplaint = repositoryHelper.getEntityRequired(ReviewComplaint.class, id);
         translationService.map(update, reviewComplaint);
         reviewComplaint = reviewComplaintRepository.save(reviewComplaint);
